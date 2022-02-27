@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Cinema</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="/static/logos.png" style="width:45%;" class="w3-round"><br><br>
+    <h4><Strong>Your Cinema</Strong></h4>
+    <p class="w3-text-grey">Reserva tus entradas al Cine</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Cartelera</a> 
+    <a href="/reservation" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Reservacion</a> 
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <a href="#"><img src="/static/logos.png" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1 style="color: teal;"><strong>Cartelera</strong></h1>
+    <br>
+    </div>
+  </header>
+  
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="/static/brujas.jpeg" alt="brujas" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><strong>Cacería de Brujas</strong><p>
+            <span class="w3-tag w3-black w3-margin-bottom">B15</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">98</span> <span class="w3-tag w3-teal w3-small w3-margin-bottom">Terror</span>
+        <p style="color: teal;">Sinopsis</p>
+        <p>
+            En un Estados Unidos moderno en el que las brujas son reales y la brujería es ilegal, 
+            una adolescente debe enfrentarse a sus propios demonios y prejuicios mientras ayuda a dos brujas a evitar 
+            a las fuerzas de la autoridad y a cruzar la frontera sur para refugiarse en México.
+        </p>
+        <center><p><a href="/hora/brujas" class="w3-button w3-small w3-black">Reservar</a></p></center>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="/static/conmigo.jpeg" alt="casate" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><strong>Cásate Conmigo</strong><p>
+            <span class="w3-tag w3-black w3-margin-bottom">B</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">112</span> <span class="w3-tag w3-teal w3-small w3-margin-bottom">Comedia</span>
+        <p style="color: teal;">Sinopsis</p>
+        <p>
+            Una estrella del pop es abandonada por su prometido, una estrella del rock, momentos antes de su boda en
+            el Madison Square Garden, por lo que decide casarse con un hombre que selecciona aleatoriamente entre el público.
+        </p>
+        <center><p><a href="/hora/casate" class="w3-button w3-small w3-black">Reservar</a></p></center>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="/static/corazon.jpeg" alt="corazon" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><strong>Corazón de Fuego</strong><p>
+            <span class="w3-tag w3-black w3-margin-bottom">A</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">93</span> <span class="w3-tag w3-teal w3-small w3-margin-bottom">Animación</span>
+        <p style="color: teal;">Sinopsis</p>
+        <p>
+            Nueva York, 1920. Georgia Nolan sueña con ser la primera mujer bombero del mundo, pero todos quieren convencerla 
+            de que esa no es una profesión para chicas. Cuando, años más tarde, un misterioso pirómano comienza a sembrar el pánico 
+            en Broadway, surgirá la oportunidad que siempre ha estado esperando. La investigación es asignada al bombero retirado 
+            Shawn, el padre de Georgia. Desesperada por ayudar a su padre y salvar su ciudad, Georgia se disfraza de chico y se une 
+            a un pequeño grupo de bomberos inadaptados que van a poner todo su corazón en detener al pirómano
+        </p>
+        <center><p><a href="/hora/corazon" class="w3-button w3-small w3-black">Reservar</a></p></center>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Second Photo Grid-->
+  <br>
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="/static/padrino.jpeg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><strong>El Padrino 50 Años</strong><p>
+            <span class="w3-tag w3-black w3-margin-bottom">B15</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">175</span> <span class="w3-tag w3-teal w3-small w3-margin-bottom">Drama</span>
+        <p style="color: teal;">Sinopsis</p>
+        <p>
+            Revive la película más aclamada de todos los tiempos, magistralmente restaurada, bajo la supervisión de Francis Ford Coppola, 
+            en 4K Ultra HD y con los más altos estándares de audio. América, años 40. Don Vito Corleone (Marlon Brando) es el respetado y 
+            temido jefe de una de las cinco familias de la mafia de Nueva York. Tiene cuatro hijos: Connie (Talia Shire), el impulsivo Sonny 
+            (James Caan), el pusilánime Fredo (John Cazale) y Michael (Al Pacino), que no quiere saber nada de los negocios de su padre. 
+            Cuando Corleone, en contra de los consejos de 'Il consigliere' Tom Hagen (Robert Duvall), se niega a participar en el negocio 
+            de las drogas, el jefe de otra banda ordena su asesinato. Empieza entonces una violenta y cruenta guerra entre las familias 
+            mafiosas.
+        </p>
+        <center><p><a href="/hora/padrino" class="w3-button w3-small w3-black">Reservar</a></p></center>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="/static/banishing.jpeg" alt="banishing" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><strong>El Exorcismo</strong><p>
+            <span class="w3-tag w3-black w3-margin-bottom">B15</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">97</span> <span class="w3-tag w3-teal w3-small w3-margin-bottom">Terror</span>
+        <p style="color: teal;">Sinopsis</p>
+        <p>
+            Cuenta la historia de una casa encantada en la Inglaterra de los años 30. Un reverendo, junto a su mujer e hija, decide 
+            mudarse a esta mansión consciente de que ésta oculta un terrible secreto
+        </p>
+        <center><p><a href="/hora/banishing" class="w3-button w3-small w3-black">Reservar</a></p></center>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="/static/sing.jpeg" alt="sing" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><strong>Sing 2: ¡Ven y Canta de Nuevo!</strong><p>
+            <span class="w3-tag w3-black w3-margin-bottom">A</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">112</span> <span class="w3-tag w3-teal w3-small w3-margin-bottom">Animación</span>
+        <p style="color: teal;">Sinopsis</p>
+        <p>
+            Buster Moon y su elenco de artistas animales se preparan para lanzar un deslumbrante espectáculo en la capital del entretenimiento. 
+            Sin embargo, tiene que encontrar y persuadir a la estrella de rock más solitaria del mundo para que se una a ellos.
+        </p>
+        <center><p><a href="/hora/sing" class="w3-button w3-small w3-black">Reservar</a></p></center>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+  </footer>
+  
+  <div class="w3-black w3-center w3-padding-24">Template Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
