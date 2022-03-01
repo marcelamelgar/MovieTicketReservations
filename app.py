@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 from jinja2 import Template, FileSystemLoader, Environment
 from typing import Dict, Text
 import numpy as np
+from info import Cine1, Cine2, Cine3, Cine4
 
 domain = "0.0.0.0:5000/"
 number = 0
@@ -18,8 +19,23 @@ def cartelera():
 def read_movie(chosen_movie):
     if request.method == "POST":
         time = request.form["gethorario"]
+        texto = "la hora escogida fue: "
         print(time)
-        return redirect(url_for('read_movie'), time = time)
+        sala1 = ['10:15', '11:20', '14:00', '16:00', '18:35']
+        sala2 = ['13:05','14:05', '19:00', '20:30', '16:20']
+        sala3 = ['15:45', '17:45', '21:05', '20:45', '17:30']
+        sala4 = ['16:22', '18:30', '22:15', '23:55', '21:15']
+        if time in sala1:
+            cine1 = Cine1()
+        elif time in sala2:
+            cine1 = Cine2()
+        elif time in sala3:
+            cine1 = Cine3()
+        elif time in sala4:
+            cine1 = Cine4()
+        
+        return render_template("hora.html", cine1=cine1, time=time, texto=texto)
+
     horas = []
     if chosen_movie == 'brujas':
         movie = 'Cacería de Brujas'
@@ -42,9 +58,9 @@ def read_movie(chosen_movie):
     horas =  np.array(horas)
     return render_template("hora.html", movie = movie, horas = horas)
 
-@app.route("/asiento", methods=["GET", "POST"])
-def get_asiento():
-    return render_template("asiento.html")
+# @app.route("/asiento", methods=["GET", "POST"])
+# def get_asiento():
+#     return render_template("asiento.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)

@@ -53,21 +53,21 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <img src="/static/time.jpeg" alt="time" style="width:100%" class="w3-hover-opacity">
       <div class="w3-container w3-white">
         <br>
-        <form action="{{chosen_movie}}">
+        <form method="POST" action="{{chosen_movie}}">
           <label for="horas"><h4>Escoge la hora de la función:</h4></strong>
             <br>
             <center>
                 {% for value in horas %}
                 {% for hora in value %}
-                <input type="radio" id="gethorario" name="gethorario" value={{hora}}>
+                <input type="radio" id="getho" name="gethorario" value={{hora}}>
                 <label for="html">{{hora}}</label><br>
                 {% endfor%}
                 {% endfor%}
             <br><br>
           </center>
-          <input type="submit" value="Submit">
-        </form>
-        <!-- <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="horaelegida" name="horaelegida" onclick="getHora()">Choose!</button></p></center> -->
+        <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="horaelegida" name="horaelegida">Choose!</button></p></center>
+      </form>
+      <h6>{{texto}} {{time}}</h6>
       </div>
     </div>
 
@@ -78,12 +78,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
           <br>
         {% for row in cine1 %}
         {% for seat in row %}
-          {{seat}}|&emsp;
+          {{seat}}<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">|&emsp;
         {% endfor%}
         <br>
         {% endfor%}
         <br>
         </center>
+        <br>
+
       </div>
     </div>
   </div>
