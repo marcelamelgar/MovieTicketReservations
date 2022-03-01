@@ -49,11 +49,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <!-- Second Photo Grid-->
   <br>
   <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
+    <!-- <div class="w3-third w3-container w3-margin-bottom">
       <img src="/static/time.jpeg" alt="time" style="width:100%" class="w3-hover-opacity">
       <div class="w3-container w3-white">
         <br>
-        <form action="{{chosen_movie}}">
+        <form>
           <label for="horas"><h4>Escoge la hora de la función:</h4></strong>
             <br>
             <center>
@@ -65,11 +65,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
                 {% endfor%}
             <br><br>
           </center>
-          <input type="submit" value="Submit">
+          <input type="submit" value="Submit" href="/asiento">
         </form>
-        <!-- <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="horaelegida" name="horaelegida" onclick="getHora()">Choose!</button></p></center> -->
-      </div>
-    </div>
+        <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="horaelegida" name="horaelegida" onclick="getHora()">Choose!</button></p></center> -->
+      <!-- </div>
+    </div> -->
 
     <div class="w3-twothird w3-container w3-margin-bottom">
       <img src="/static/screens.webp" alt="screen" style="width:100%" class="w3-hover-opacity">
@@ -105,12 +105,6 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-
-// function getHora(){
-//   selectElement = document.querySelector('#horasC');
-//   output = selectElement.value;
-//   alert(output)
-// }
 </script>
 
 </body>

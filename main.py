@@ -6,7 +6,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import numpy as np
-from info import Cine1, Cine2
 
 class Item(BaseModel):
     name: str
@@ -49,18 +48,52 @@ async def read_movie(request: Request, chosen_movie: str):
         horas = [['16:20'],['17:30'],['21:15']]
     horas =  np.array(horas)
 
-    return templates.TemplateResponse("hora.html",{"request": request, "chosen_movie": chosen_movie, "movie":movie, "horas":horas, "cine1":Cine1()})
+    return templates.TemplateResponse("hora.html",{"request": request, "chosen_movie": chosen_movie, "movie":movie, "horas":horas})
 
 @app.post("/hora/{chosen_movie}", response_class=HTMLResponse)
 async def read_movie(request: Request, chosen_movie: str):
-    if 'horaelegida' in request.form:
-        user_time = request.form['horasC']
+    hora = request.args.get("gethorario")
+    print(hora)
+    print("horararar")
+    if hora == '10:15':
+        num = np.array([['O'], ['A'], ['B'], ['C'], ['D'], ['E'], ['F']])
+        uno = np.array([['1'],['0'],['0'],['0'],['0'],['0'],['0']])
+        dos = np.array([['2'],['0'],['X'],['0'],['0'],['0'],['0']])
+        tres = np.array([['3'],['0'],['X'],['0'],['0'],['0'],['0']])
+        cuatro = np.array([['4'],['0'],['0'],['0'],['0'],['0'],['0']])
+        cinco = np.array([['5'],['0'],['0'],['0'],['0'],['X'],['0']])
+        seis = np.array([['6'],['0'],['0'],['0'],['0'],['X'],['0']])
+        siete = np.array([['7'],['0'],['0'],['0'],['0'],['X'],['0']])
+        ocho = np.array([['8'],['0'],['0'],['0'],['0'],['X'],['0']])
 
-    if user_time == '10:15':
-        Cine1()
-    elif user_time == '13:05':
-        Cine2()
-    return templates.TemplateResponse("hora.html",{"request": request, "chosen_movie": chosen_movie,"cine1":Cine1(),"cine2":Cine2()})
+        cine1 = np.hstack((num,uno))
+        cine1 = np.hstack((cine1,dos))
+        cine1 = np.hstack((cine1,tres))
+        cine1 = np.hstack((cine1,cuatro))
+        cine1 = np.hstack((cine1,cinco))
+        cine1 = np.hstack((cine1,seis))
+        cine1 = np.hstack((cine1,siete))
+        cine1 = np.hstack((cine1,ocho))
+    elif hora == '13:05':
+        num = np.array([['O'], ['A'], ['B'], ['C'], ['D'], ['E'], ['F']])
+        uno = np.array([['1'],['0'],['0'],['0'],['0'],['0'],['0']])
+        dos = np.array([['2'],['0'],['0'],['0'],['0'],['0'],['0']])
+        tres = np.array([['3'],['0'],['0'],['X'],['0'],['0'],['0']])
+        cuatro = np.array([['4'],['0'],['0'],['x'],['0'],['0'],['0']])
+        cinco = np.array([['5'],['X'],['0'],['0'],['0'],['X'],['0']])
+        seis = np.array([['6'],['X'],['0'],['0'],['0'],['X'],['0']])
+        siete = np.array([['7'],['X'],['0'],['0'],['0'],['0'],['0']])
+        ocho = np.array([['8'],['0'],['0'],['0'],['0'],['X'],['0']])
+
+        cine1 = np.hstack((num,uno))
+        cine1 = np.hstack((cine1,dos))
+        cine1 = np.hstack((cine1,tres))
+        cine1 = np.hstack((cine1,cuatro))
+        cine1 = np.hstack((cine1,cinco))
+        cine1 = np.hstack((cine1,seis))
+        cine1 = np.hstack((cine1,siete))
+        cine1 = np.hstack((cine1,ocho))
+    return templates.TemplateResponse("hora.html",{"request": request, "chosen_movie": chosen_movie,"cine1":cine1, "hora":hora})
 
 
 @app.get("/users/{user_id}")
