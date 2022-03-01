@@ -1,20 +1,64 @@
 import numpy as np
 
-def horarios(movie):
-    horas = []
-    if movie == 'brujas':
-        horas = [['10:15'],['13:05'],['15:45'],['16:22'],['18:30']]
-    elif movie == 'casate':
-        horas = [['11:20'],['14:05'],['17:45']]
-    elif movie == 'corazon':
-        horas = [['14:00'],['19:00']]
-    elif movie == 'padrino':
-        horas = [['16:00'],['20:30'],['21:05']]
-    elif movie == 'banishing':
-        horas = [['18:35'],['20:45'],['22:15'],['23:55']]
-    elif movie == 'sing':
-        horas = [['16:20'],['17:30'],['21:15']]
-    return horas
+def Cine1():
+    num = np.array([['O'], ['A'], ['B'], ['C'], ['D'], ['E'], ['F']])
+    uno = np.array([['1'],['0'],['0'],['0'],['0'],['0'],['0']])
+    dos = np.array([['2'],['0'],['X'],['0'],['0'],['0'],['0']])
+    tres = np.array([['3'],['0'],['X'],['0'],['0'],['0'],['0']])
+    cuatro = np.array([['4'],['0'],['0'],['0'],['0'],['0'],['0']])
+    cinco = np.array([['5'],['0'],['0'],['0'],['0'],['X'],['0']])
+    seis = np.array([['6'],['0'],['0'],['0'],['0'],['X'],['0']])
+    siete = np.array([['7'],['0'],['0'],['0'],['0'],['X'],['0']])
+    ocho = np.array([['8'],['0'],['0'],['0'],['0'],['X'],['0']])
 
-print(horarios('brujas'))
-print(horas)
+    cine1 = np.hstack((num,uno))
+    cine1 = np.hstack((cine1,dos))
+    cine1 = np.hstack((cine1,tres))
+    cine1 = np.hstack((cine1,cuatro))
+    cine1 = np.hstack((cine1,cinco))
+    cine1 = np.hstack((cine1,seis))
+    cine1 = np.hstack((cine1,siete))
+    cine1 = np.hstack((cine1,ocho))
+    return cine1
+
+def Cine2():
+    num = np.array([['O'], ['A'], ['B'], ['C'], ['D'], ['E'], ['F']])
+    uno = np.array([['1'],['0'],['0'],['0'],['0'],['0'],['0']])
+    dos = np.array([['2'],['0'],['0'],['0'],['0'],['0'],['0']])
+    tres = np.array([['3'],['0'],['0'],['X'],['0'],['0'],['0']])
+    cuatro = np.array([['4'],['0'],['0'],['x'],['0'],['0'],['0']])
+    cinco = np.array([['5'],['X'],['0'],['0'],['0'],['X'],['0']])
+    seis = np.array([['6'],['X'],['0'],['0'],['0'],['X'],['0']])
+    siete = np.array([['7'],['X'],['0'],['0'],['0'],['0'],['0']])
+    ocho = np.array([['8'],['0'],['0'],['0'],['0'],['X'],['0']])
+
+    cine2 = np.hstack((num,uno))
+    cine2 = np.hstack((cine2,dos))
+    cine2 = np.hstack((cine2,tres))
+    cine2 = np.hstack((cine2,cuatro))
+    cine2 = np.hstack((cine2,cinco))
+    cine2 = np.hstack((cine2,seis))
+    cine2 = np.hstack((cine2,siete))
+    cine2 = np.hstack((cine2,ocho))
+    return cine2
+
+def Cine3():
+    num = np.array([['O'], ['A'], ['B'], ['C'], ['D'], ['E'], ['F']])
+    uno = np.array([['1'],['0'],['0'],['0'],['0'],['0'],['0']])
+    dos = np.array([['2'],['0'],['0'],['0'],['0'],['0'],['0']])
+    tres = np.array([['3'],['0'],['0'],['X'],['0'],['0'],['0']])
+    cuatro = np.array([['4'],['0'],['0'],['x'],['0'],['0'],['0']])
+    cinco = np.array([['5'],['X'],['0'],['0'],['0'],['X'],['0']])
+    seis = np.array([['6'],['X'],['0'],['0'],['0'],['X'],['0']])
+    siete = np.array([['7'],['X'],['0'],['0'],['0'],['0'],['0']])
+    ocho = np.array([['8'],['0'],['0'],['0'],['0'],['X'],['0']])
+
+    cine3 = np.hstack((num,uno))
+    cine3 = np.hstack((cine3,dos))
+    cine3 = np.hstack((cine3,tres))
+    cine3 = np.hstack((cine3,cuatro))
+    cine3 = np.hstack((cine3,cinco))
+    cine3 = np.hstack((cine3,seis))
+    cine3 = np.hstack((cine3,siete))
+    cine3 = np.hstack((cine3,ocho))
+    return cine3

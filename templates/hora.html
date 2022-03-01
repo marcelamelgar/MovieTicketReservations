@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+.w3-button {width:150px}
 </style>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -49,25 +50,44 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <br>
   <div class="w3-row-padding">
     <div class="w3-third w3-container w3-margin-bottom">
+      <img src="/static/time.jpeg" alt="time" style="width:100%" class="w3-hover-opacity">
       <div class="w3-container w3-white">
+        <br>
         <form>
-            <label for="cars">Escoge la hora de la función:</label>
-            <select name="horas" id="cars">
+          <label for="horas"><h4>Escoge la hora de la función:</h4></strong>
+            <br>
+            <center>
                 {% for value in horas %}
                 {% for hora in value %}
-                <option value="hora">{{hora}}</option>
+                <input type="radio" id="gethora" name="gethora" value={{hora}}>
+                <label for="html">{{hora}}</label><br>
                 {% endfor%}
                 {% endfor%}
-            </select>
+            <br><br>
+          </center>
         </form>
+        <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="horaelegida" name="horaelegida" onclick="getHora()">Choose!</button></p></center>
+      </div>
+    </div>
+
+    <div class="w3-twothird w3-container w3-margin-bottom">
+      <img src="/static/screens.webp" alt="screen" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <center>
+          <br>
+        {% for row in cine1 %}
+        {% for seat in row %}
+          {{seat}}|&emsp;
+        {% endfor%}
+        <br>
+        {% endfor%}
+        <br>
+        </center>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="w3-container w3-padding-32 w3-dark-grey">
-  </footer>
-  
   <div class="w3-black w3-center w3-padding-24">Template Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
 
 <!-- End page content -->
@@ -84,6 +104,12 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
+
+// function getHora(){
+//   selectElement = document.querySelector('#horasC');
+//   output = selectElement.value;
+//   alert(output)
+// }
 </script>
 
 </body>

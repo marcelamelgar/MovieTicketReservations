@@ -1,10 +1,12 @@
 from datetime import datetime
 from typing import Optional
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+import numpy as np
+from info import Cine1, Cine2
 
 class Item(BaseModel):
     name: str
@@ -45,7 +47,21 @@ async def read_movie(request: Request, chosen_movie: str):
     elif chosen_movie == 'sing':
         movie = 'Sing 2: ¡Ven y Canta de Nuevo!'
         horas = [['16:20'],['17:30'],['21:15']]
-    return templates.TemplateResponse("hora.html",{"request": request, "chosen_movie": chosen_movie, "movie":movie, "horas":horas})
+    horas =  np.array(horas)
+
+    return templates.TemplateResponse("hora.html",{"request": request, "chosen_movie": chosen_movie, "movie":movie, "horas":horas, "cine1":Cine1()})
+
+@app.post("/hora/{chosen_movie}", response_class=HTMLResponse)
+async def read_movie(request: Request, chosen_movie: str):
+    if 'horaelegida' in request.form:
+        user_time = request.form['horasC']
+
+    if user_time == '10:15':
+        Cine1()
+    elif user_time == '13:05':
+        Cine2()
+    return templates.TemplateResponse("hora.html",{"request": request, "chosen_movie": chosen_movie,"cine1":Cine1(),"cine2":Cine2()})
+
 
 @app.get("/users/{user_id}")
 async def read_user(user_id: str):
