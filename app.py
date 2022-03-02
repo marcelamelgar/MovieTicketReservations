@@ -20,6 +20,7 @@ def read_movie(chosen_movie):
     if request.method == "POST":
         time = request.form["gethorario"]
         texto = "la hora escogida fue: "
+        texto2 = "esta es la disponibilidad de la sala: "
         print(time)
         sala1 = ['10:15', '11:20', '14:00', '16:00', '18:35']
         sala2 = ['13:05','14:05', '19:00', '20:30', '16:20']
@@ -33,8 +34,11 @@ def read_movie(chosen_movie):
             cine1 = Cine3()
         elif time in sala4:
             cine1 = Cine4()
+
+        # asiento = request.form.get('asiento') 
+        # print(asiento)   
         
-        return render_template("hora.html", cine1=cine1, time=time, texto=texto)
+        return render_template("hora.html", cine1=cine1, time=time, texto=texto, texto2=texto2)
 
     horas = []
     if chosen_movie == 'brujas':
@@ -58,9 +62,9 @@ def read_movie(chosen_movie):
     horas =  np.array(horas)
     return render_template("hora.html", movie = movie, horas = horas)
 
-# @app.route("/asiento", methods=["GET", "POST"])
-# def get_asiento():
-#     return render_template("asiento.html")
+@app.route("/asiento", methods=["GET", "POST"])
+def get_asiento():
+    return render_template("asiento.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
