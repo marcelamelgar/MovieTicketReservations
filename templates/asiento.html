@@ -11,8 +11,20 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 .w3-button {width:150px}
 </style>
+<script >
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+  </script>
 </head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
+<body class="w3-light-grey w3-content" style="max-width:1600px" >
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
@@ -54,16 +66,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <img src="/static/screens.webp" alt="screen" style="width:100%" class="w3-hover-opacity">
       <div class="w3-container w3-white">
         <center>
+          <p>----------------------------------------------------------------------------------------</p>
           <br>
+          <form method="POST" id="asientos">
             {% for row in cine1 %}
             {% for seat in row %}
-              {{seat}}<input type="checkbox" id="vehicle1" name="asiento" value="{{seat}}">|&emsp;
+              {{seat}}<input type="checkbox" id="seat" name="asiento" value="{{seat}}">|&emsp;
             {% endfor%}
             <br>
             {% endfor%}
             <br>
-            <center><p><button class="w3-button w3-black w3-border w3-hover-teal" type="submit" id="horaelegida" name="horaelegida">Reserve!</button></p></center>
-        </center>
+            <center><p><button class="w3-button w3-black w3-border w3-hover-teal" type="submit" id="seatelegida" name="horaelegida">Reserve!</button></p></center>
+          </form>
+          </center>
         <br>
 
       </div>
@@ -75,25 +90,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <!-- End page content -->
 </div>
-
-<script>
-// Script to open and close sidebar
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
-
-// function getHora(){
-//   selectElement = document.querySelector('#horasC');
-//   output = selectElement.value;
-//   alert(output)
-// }
-</script>
 
 </body>
 </html>
