@@ -42,7 +42,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="/"><img src="/static/logos.png" alt="logo" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><em class="fa fa-bars"></em></span>
     <div class="w3-container">
-    <h1 style="color: teal;"><strong>{{ movie }}</strong></h1>
+    <h1 style="color: teal;"><strong>Datos de Reservación</strong></h1>
     <br>
     </div>
   </header>
@@ -50,37 +50,48 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <!-- Second Photo Grid-->
   <br>
   <div class="w3-row-padding">
+  <div class="w3-rest w3-container w3-margin-bottom">
+    <img src="/static/ticker.png" alt="screen" style="width:100%" class="w3-hover-opacity">
+  </div>
+</div>
+
+  <div class="w3-row-padding">
     <div class="w3-threequarter w3-container w3-margin-bottom">
       <div class="w3-container w3-white">
         <br>
         <form>
           <div class="form-group">
             <label for="inputname">Nombre:</label>
-            <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="Nombre...">
+            <input type="text" class="form-control" id="inputname" name="getnombre" aria-describedby="nameHelp" placeholder="Nombre...">
             <small id="namelHelp" class="form-text text-muted">Tu reservación estaría bajo este nombre.</small>
           </div>
           <div class="form-group">
             <label for="inputemail">Email:</label>
-            <input type="email" class="form-control" id="inputemail" placeholder="Email...">
+            <input type="email" class="form-control" id="inputemail" name="getemail" placeholder="Email...">
           </div>
           <p>Metodo de Pago:</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="tarjeta">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" name="getpago" id="inlineRadio1" value="tarjeta">
             <label class="form-check-label" for="inlineRadio1">tarjeta</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="efectivo">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" name="getpago" id="inlineRadio2" value="efectivo">
             <label class="form-check-label" for="inlineRadio2">efectivo</label>
           </div>
-          <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="reservar" name="horaelegida">Reserve!</button></p></center>
+          <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="reservar" name="horaelegida">Reserve!</button></p></center><br>
         </form>
       </div>
     </div>
 
     <div class="w3-quarter w3-container w3-margin-bottom">
-      <em class="fa fa-user fa-fw w3-margin-right" style="font-size:200px;color:teal;"></em>
       <div class="w3-container w3-white">
-        <p>sd</p>
+        <h3><strong>Película:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{movie}}
+        <h3><strong>Función:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;{{time}} horas
+        <h3><strong>Entradas:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{entradas}}
+        <h3><strong>Asientos:</strong> </h3>
+        {% for s in chequeados %}
+        <ul>&emsp;&emsp;&emsp;&emsp;- {{s}}</ul>
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -104,7 +115,6 @@ function w3_close() {
     document.getElementById("myOverlay").style.display = "none";
 }
 </script>
-<script type="text/javascript" src="/templates/functions.js"></script>
 
 </body>
 </html>

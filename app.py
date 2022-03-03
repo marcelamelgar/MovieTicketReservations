@@ -1,3 +1,4 @@
+from mailbox import NoSuchMailboxError
 from flask import Flask, render_template, request, url_for, redirect
 from jinja2 import Template, FileSystemLoader, Environment
 from typing import Dict, Text
@@ -16,6 +17,13 @@ sala2 = ['13:05','14:05', '19:00', '20:30', '16:20']
 sala3 = ['15:45', '17:45', '21:05', '20:45', '17:30']
 sala4 = ['16:22', '18:30', '22:15', '23:55', '21:15']
 pos = []
+chequeados = []
+time = ''
+movie = ''
+entradas = 0
+pago = ''
+nombre = ''
+email = ''
 
 @app.route("/", methods=["GET", "POST"])
 def cartelera():
@@ -23,7 +31,9 @@ def cartelera():
 
 @app.route("/hora/<chosen_movie>", methods=["GET","POST"])
 def read_movie(chosen_movie):
+    global movie
     if request.method == "POST":
+        global time
         time = request.form["gethorario"]
         texto = "la hora escogida fue: "
         texto2 = "esta es la disponibilidad de la sala: "
@@ -73,6 +83,8 @@ def get_asiento(time):
         cine1 = Cine4P()
         
     if request.method == "POST":
+        global chequeados
+        global entradas
         done = "ingresar datos para reservacion >>"
         chequeados = request.form.getlist('asiento')
         chequeados = np.array(chequeados)
@@ -82,6 +94,10 @@ def get_asiento(time):
             for j in range(len(cine1[i])):
                 if cine1[i][j] in chequeados:
                     cine1[i][j] = '0X'
+        
+        for k in chequeados:
+            entradas += 1
+        print(entradas)
 
         return render_template("asiento.html",chequeados=chequeados, done=done, cine1=cine1)
 
@@ -89,7 +105,20 @@ def get_asiento(time):
 
 @app.route("/reservationinfo", methods=["GET", "POST"])
 def reservationinfo():
-    return render_template("reservationInfo.html")
+    global movie
+    global time
+    global entradas
+    global chequeados
+    global nombre
+    global pago
+    global email
+
+    if request.method == "POST":
+        nombre = request.form["getnombre"]
+        email = request.form["getemail"]
+        pago = request.form["getpago"]
+
+    return render_template("reservationInfo.html", movie=movie, time=time, entradas=entradas, chequeados=chequeados)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
