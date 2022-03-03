@@ -41,7 +41,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="/"><img src="/static/logos.png" alt="logo" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><em class="fa fa-bars"></em></span>
     <div class="w3-container">
-    <h1 style="color: teal;"><strong>{{ movie }}</strong></h1>
+    <h1 style="color: teal;" id="movieT" value="{{movie}}"><strong>{{ movie }}</strong></h1>
     <br>
     </div>
   </header>
@@ -91,7 +91,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             </form>
         </center>
         <br>
-
       </div>
     </div>
   </div>
@@ -113,13 +112,8 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-
-// function getHora(){
-//   selectElement = document.querySelector('#horasC');
-//   output = selectElement.value;
-//   alert(output)
-// }
 </script>
+<script type="text/javascript" src="/templates/functions.js"></script>
 
 </body>
 </html>

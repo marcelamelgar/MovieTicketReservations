@@ -77,7 +77,13 @@ def get_asiento(time):
         chequeados = request.form.getlist('asiento')
         chequeados = np.array(chequeados)
         print(chequeados)
-        return render_template("asiento.html",chequeados=chequeados, done=done)
+
+        for i in range(len(cine1)):
+            for j in range(len(cine1[i])):
+                if cine1[i][j] in chequeados:
+                    cine1[i][j] = '0X'
+
+        return render_template("asiento.html",chequeados=chequeados, done=done, cine1=cine1)
 
     return render_template("asiento.html", time=time, cine1=cine1)
 
