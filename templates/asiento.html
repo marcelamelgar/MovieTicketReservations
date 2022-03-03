@@ -53,7 +53,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="/"><img src="/static/logos.png" alt="logo" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><em class="fa fa-bars"></em></span>
     <div class="w3-container">
-    <h1 style="color: teal;"><strong>{{ movie }}</strong></h1>
+    <h1 style="color: teal;"><strong>{{time}}</strong></h1>
     <br>
     </div>
   </header>
@@ -65,10 +65,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <div class="w3-rest w3-container w3-margin-bottom">
       <img src="/static/screens.webp" alt="screen" style="width:100%" class="w3-hover-opacity">
       <div class="w3-container w3-white">
+        <h6>Escoge todos aquellos asientos que no tengan X</h6>
         <center>
           <p>----------------------------------------------------------------------------------------</p>
           <br>
-          <form method="POST" id="asientos">
+          <form method="POST" id="asientos" action="{{chequeados}}">
             {% for row in cine1 %}
             {% for seat in row %}
               {{seat}}<input type="checkbox" id="seat" name="asiento" value="{{seat}}">|&emsp;
@@ -78,6 +79,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             <br>
             <center><p><button class="w3-button w3-black w3-border w3-hover-teal" type="submit" id="seatelegida" name="horaelegida">Reserve!</button></p></center>
           </form>
+          <a href="/reservationinfo">{{done}}</a>
           </center>
         <br>
 

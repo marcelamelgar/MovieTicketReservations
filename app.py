@@ -59,11 +59,10 @@ def read_movie(chosen_movie):
         movie = 'Sing 2: ¡Ven y Canta de Nuevo!'
         horas = [['16:20'],['17:30'],['21:15']]
     horas =  np.array(horas)
-    return render_template("hora.html", movie = movie, horas = horas)
+    return render_template("hora.html", movie = movie, horas = horas, chosen_movie = chosen_movie)
 
 @app.route("/asiento/<time>", methods=["GET", "POST"])
 def get_asiento(time):
-    print(time)
     if time in sala1:
         cine1 = Cine1P()
     elif time in sala2:
@@ -74,11 +73,17 @@ def get_asiento(time):
         cine1 = Cine4P()
         
     if request.method == "POST":
+        done = "ingresar datos para reservacion >>"
         chequeados = request.form.getlist('asiento')
         chequeados = np.array(chequeados)
         print(chequeados)
+        return render_template("asiento.html",chequeados=chequeados, done=done)
 
     return render_template("asiento.html", time=time, cine1=cine1)
+
+@app.route("/reservationinfo", methods=["GET", "POST"])
+def reservationinfo():
+    return render_template("reservationInfo.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
