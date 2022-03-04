@@ -27,7 +27,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><em class="fa fa-th-large fa-fw w3-margin-right"></em>Cartelera</a> 
-    <a href="/reservation" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><em class="fa fa-user fa-fw w3-margin-right"></em>Reservacion</a> 
+    <a href="/reserve" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><em class="fa fa-user fa-fw w3-margin-right"></em>Reservacion</a> 
   </div>
 </nav>
 
@@ -59,7 +59,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <div class="w3-threequarter w3-container w3-margin-bottom">
       <div class="w3-container w3-white">
         <br>
-        <form>
+        <form method="POST" action="/reserve">
           <div class="form-group">
             <label for="inputname">Nombre:</label>
             <input type="text" class="form-control" id="inputname" name="getnombre" aria-describedby="nameHelp" placeholder="Nombre...">
@@ -70,32 +70,30 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             <input type="email" class="form-control" id="inputemail" name="getemail" placeholder="Email...">
           </div>
           <p>Metodo de Pago:</p>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" name="getpago" id="inlineRadio1" value="tarjeta">
-            <label class="form-check-label" for="inlineRadio1">tarjeta</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" name="getpago" id="inlineRadio2" value="efectivo">
+          <div class="form-group">
+            <input class="form-check-input" type="radio" name="getpago" id="inlineRadio1" value="tarjeta">
+            <label class="form-check-label" for="inlineRadio1">tarjeta</label>&emsp;
+            <input class="form-check-input" type="radio" name="getpago" id="inlineRadio2" value="efectivo">
             <label class="form-check-label" for="inlineRadio2">efectivo</label>
           </div>
-          <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="reservar" name="horaelegida">Reserve!</button></p></center><br>
+          <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="reservar" name="horaelegida" onclick="gottenReservation()">Reserve!</button></p></center><br>
         </form>
       </div>
     </div>
 
     <div class="w3-quarter w3-container w3-margin-bottom">
       <div class="w3-container w3-white">
-        <h3><strong>Película:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{movie}}
-        <h3><strong>Función:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;{{time}} horas
-        <h3><strong>Entradas:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{entradas}}
-        <h3><strong>Asientos:</strong> </h3>
+        <h3 style="color: teal;"><strong>Película:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{movie}}
+        <h3 style="color: teal;"><strong>Función:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{time}} horas
+        <h3 style="color: teal;"><strong>Entradas:</strong> </h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{entradas}}
+        <h3 style="color: teal;"><strong>Asientos:</strong> </h3>
         {% for s in chequeados %}
         <ul>&emsp;&emsp;&emsp;&emsp;- {{s}}</ul>
         {% endfor %}
+        <p>precio por entrada: Q.65.00</p>
       </div>
     </div>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br>
 
   <!-- Footer -->
   <div class="w3-black w3-center w3-padding-24">Template Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
@@ -113,6 +111,11 @@ function w3_open() {
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
+}
+
+function gottenReservation(){
+  // if(confirm("Tus hados han sido guardados. Por favor confirmar reservacion.")) document.location = '/reserve';
+  alert("Tus hados han sido guardados. Por favor confirmar orden en el apartado 'Reservacion' ");
 }
 </script>
 

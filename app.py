@@ -2,6 +2,7 @@ from mailbox import NoSuchMailboxError
 from flask import Flask, render_template, request, url_for, redirect
 from jinja2 import Template, FileSystemLoader, Environment
 from typing import Dict, Text
+from pydantic import BaseModel
 import numpy as np
 from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
 
@@ -25,6 +26,16 @@ pago = ''
 nombre = ''
 email = ''
 
+class ResponseReservation:
+  name: str
+  correo: str
+  pelicula: str
+  hora: str
+  ents: int
+  asientos: str
+  total: int
+  pag: str
+
 @app.route("/", methods=["GET", "POST"])
 def cartelera():
     return render_template("cartelera.html")
@@ -37,7 +48,6 @@ def read_movie(chosen_movie):
         time = request.form["gethorario"]
         texto = "la hora escogida fue: "
         texto2 = "esta es la disponibilidad de la sala: "
-        print(time)
         if time in sala1:
             cine1 = Cine1()
         elif time in sala2:
@@ -88,7 +98,6 @@ def get_asiento(time):
         done = "ingresar datos para reservacion >>"
         chequeados = request.form.getlist('asiento')
         chequeados = np.array(chequeados)
-        print(chequeados)
 
         for i in range(len(cine1)):
             for j in range(len(cine1[i])):
@@ -97,7 +106,6 @@ def get_asiento(time):
         
         for k in chequeados:
             entradas += 1
-        print(entradas)
 
         return render_template("asiento.html",chequeados=chequeados, done=done, cine1=cine1)
 
@@ -118,7 +126,29 @@ def reservationinfo():
         email = request.form["getemail"]
         pago = request.form["getpago"]
 
-    return render_template("reservationInfo.html", movie=movie, time=time, entradas=entradas, chequeados=chequeados)
+    return render_template("reservationInfo.html", movie=movie, time=time, entradas=entradas, chequeados=chequeados, nombre=nombre)
+
+@app.route("/reserve", methods=["GET", "POST"])
+def reservation():
+    global movie
+    global nombre
+    global time
+    global entradas
+    global chequeados
+    global pago
+    global email
+
+    res = ResponseReservation()
+    res.name = nombre
+    res.correo = email
+    res.pelicula = movie
+    res.hora = time
+    res.ents = entradas
+    res.asientos = chequeados
+    res.total = entradas * 65
+    res.pag = pago
+
+    return render_template("reservation.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)

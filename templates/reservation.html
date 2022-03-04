@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 .w3-button {width:150px}
 </style>
-
 </head>
-<body class="w3-light-grey w3-content" style="max-width:1600px" >
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
@@ -42,7 +42,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="/"><img src="/static/logos.png" alt="logo" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><em class="fa fa-bars"></em></span>
     <div class="w3-container">
-    <h1 style="color: teal;"><strong>{{time}}</strong></h1>
+    <h1 style="color: teal;"><strong>Reservación</strong></h1>
     <br>
     </div>
   </header>
@@ -50,31 +50,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <!-- Second Photo Grid-->
   <br>
   <div class="w3-row-padding">
-
-    <div class="w3-rest w3-container w3-margin-bottom">
-      <img src="/static/screens.webp" alt="screen" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <h6>Escoge todos aquellos asientos que no tengan X</h6>
-        <center>
-          <p>----------------------------------------------------------------------------------------</p>
-          <br>
-          <form method="POST" id="asientos" action="{{chequeados}}">
-            {% for row in cine1 %}
-            {% for seat in row %}
-              {{seat}}<input type="checkbox" id="seat" name="asiento" value="{{seat}}">|&emsp;
-            {% endfor%}
-            <br>
-            {% endfor%}
-            <br>
-            <center><p><button class="w3-button w3-black w3-border w3-hover-teal" type="submit" id="seatelegida" name="horaelegida">Reserve!</button></p></center>
-          </form>
-          <a href="/reservationinfo">{{done}}</a>
-          </center>
-        <br>
-
-      </div>
-    </div>
+  <div class="w3-rest w3-container w3-margin-bottom">
+    <img src="/static/ticker.png" alt="screen" style="width:100%" class="w3-hover-opacity">
   </div>
+</div>
 
   <!-- Footer -->
   <div class="w3-black w3-center w3-padding-24">Template Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
@@ -82,18 +61,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <!-- End page content -->
 </div>
 
-<script >
-  // Script to open and close sidebar
-  function w3_open() {
-      document.getElementById("mySidebar").style.display = "block";
-      document.getElementById("myOverlay").style.display = "block";
-  }
-   
-  function w3_close() {
-      document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("myOverlay").style.display = "none";
-  }
-  </script>
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
 
 </body>
 </html>
