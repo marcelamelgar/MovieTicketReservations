@@ -9,4 +9,27 @@ El algoritmo fue diseñado para que el usuario pudiera:
 - Realizar la reservación
 - Confirmar que la reservación sea correcta
 
-El lenguaje utilizado para el algoritmo fue python, en la cual se utiliza la librería de numpy para poder trabajar con arrays tanto unidimensionales como multidimensionales. Así mismo se implementan las clases o structs para la información de la reservación.
+El lenguaje utilizado para el algoritmo fue python, en la cual se utiliza la librería de numpy para poder trabajar con arrays tanto unidimensionales como multidimensionales. Así mismo se implementan las clases con NamedTuple, representando los structs para la información de la reservación. También se levantó el API por medio de flask y jinja2 para poder trabajar con html.
+
+- **Prueba Unitaria** pytest
+- **Profiling** cProfile
+- **Requests** Postman
+
+### Cómo ejecutarlo?
+1. Encontrar el file 'app.py' para poder correr el api.
+```
+cd MovieTicketReservations
+```
+
+2. Correr aplicación ejecutando el siguiente comando
+```
+python3 app.py
+```
+
+3. Interactuar con los distintos paths para reservar entradas al cine.
+
+### Recursos
+- html template: https://www.w3schools.com/w3css/w3css_templates.asp
+- https://realpython.com/python-namedtuple/
+- https://www.fullstackpython.com/flask.html
+- https://www.w3schools.com/python/numpy/numpy_creating_arrays.asp
