@@ -12,10 +12,10 @@ El algoritmo fue diseñado para que el usuario pudiera:
 El lenguaje utilizado para el algoritmo fue python, en la cual se utiliza la librería de numpy para poder trabajar con arrays tanto unidimensionales como multidimensionales. Así mismo se implementan las clases con NamedTuple, representando los structs para la información de la reservación. También se levantó el API por medio de flask y jinja2 para poder trabajar con html.
 
 - **Prueba Unitaria** pytest
-- **Profiling** cProfile
+- **Profiling** ProfilerMiddleware
 - **Requests** Postman
 
-### Cómo ejecutarlo?
+### Cómo ejecutar API
 1. Encontrar el file 'app.py' para poder correr el api.
 ```
 cd MovieTicketReservations
@@ -27,6 +27,23 @@ python3 app.py
 ```
 
 3. Interactuar con los distintos paths para reservar entradas al cine.
+
+### Cómo ejecutar Profiling
+1. Encontrar el file 'profiling.py' para poder correr el api.
+
+2. Correr aplicación ejecutando el siguiente comando
+```
+python3 profiling.py
+```
+
+3. Se va a abrir un nuevo port en el que correrá la aplicación
+
+5. Por cada path por que el usuario interactue, se puede ir viendo el profiling en terminal con el tiempo y cantidad de llamadas por funcion.
+
+7. Para detener el profiling ejecute el siguiente comando:
+```
+^C
+```
 
 ### Recursos
 - html template: https://www.w3schools.com/w3css/w3css_templates.asp
