@@ -30,6 +30,6 @@ python3 app.py
 
 ### Recursos
 - html template: https://www.w3schools.com/w3css/w3css_templates.asp
-- https://realpython.com/python-namedtuple/
-- https://www.fullstackpython.com/flask.html
-- https://www.w3schools.com/python/numpy/numpy_creating_arrays.asp
+- clases NamedTuple: https://realpython.com/python-namedtuple/
+- flask: https://www.fullstackpython.com/flask.html
+- numpy arrays: https://www.w3schools.com/python/numpy/numpy_creating_arrays.asp
