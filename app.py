@@ -1,7 +1,8 @@
 from mailbox import NoSuchMailboxError
+from subprocess import list2cmdline
 from flask import Flask, render_template, request, url_for, redirect
 from jinja2 import Template, FileSystemLoader, Environment
-from typing import Dict, Text
+from typing import Dict, Text, NamedTuple
 from pydantic import BaseModel
 import numpy as np
 from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
@@ -25,14 +26,15 @@ entradas = 0
 pago = ''
 nombre = ''
 email = ''
+editar = ''
 
-class ResponseReservation:
+class ResponseReservation(NamedTuple):
   name: str
   correo: str
   pelicula: str
   hora: str
   ents: int
-  asientos: str
+  asientos: list
   total: int
   pag: str
 
@@ -125,8 +127,11 @@ def reservationinfo():
         nombre = request.form["getnombre"]
         email = request.form["getemail"]
         pago = request.form["getpago"]
+        print(pago)
+        print(nombre)
+        print(email)
 
-    return render_template("reservationInfo.html", movie=movie, time=time, entradas=entradas, chequeados=chequeados, nombre=nombre)
+    return render_template("reservationInfo.html", movie=movie, time=time, entradas=entradas, chequeados=chequeados, nombre=nombre, pago=pago, email=email)
 
 @app.route("/reserve", methods=["GET", "POST"])
 def reservation():
@@ -137,18 +142,46 @@ def reservation():
     global chequeados
     global pago
     global email
+    global editar
 
-    res = ResponseReservation()
-    res.name = nombre
-    res.correo = email
-    res.pelicula = movie
-    res.hora = time
-    res.ents = entradas
-    res.asientos = chequeados
-    res.total = entradas * 65
-    res.pag = pago
+    res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago)
+    print(res)
 
-    return render_template("reservation.html")
+    if request.method == "POST":
+        dato = request.form['edita']
+        print(dato)
 
+        if dato == 'nombre':
+            editar = 'nombre'
+        elif dato == 'email':
+            editar = 'email'
+        elif dato == 'pago':
+            editar = 'pago'
+
+    return render_template("reservation.html", nombre=nombre, movie=movie, time=time, entradas=entradas, chequeados=chequeados, pago=pago, email=email, total=entradas*65, editar=editar)
+
+@app.route("/edit", methods=["GET", "POST"])
+def edit():
+    global pago
+    global email
+    global editar
+    global nombre
+
+    if request.method == "POST":
+        cambio = request.form.get("getnombres")
+        print(cambio)
+
+        if editar == 'nombre':
+            nombre = cambio
+        if editar == 'pago':
+            pago = cambio
+        if editar == 'email':
+            email = cambio
+
+    res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago)
+    print(res)
+    
+    return render_template("edit.html", pago=pago, email=email, nombre=nombre, editar=editar)
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
