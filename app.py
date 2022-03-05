@@ -1,9 +1,6 @@
-from mailbox import NoSuchMailboxError
-from subprocess import list2cmdline
-from flask import Flask, render_template, request, url_for, redirect
-from jinja2 import Template, FileSystemLoader, Environment
-from typing import Dict, Text, NamedTuple
-from pydantic import BaseModel
+from flask import Flask, render_template, request
+from jinja2 import FileSystemLoader, Environment
+from typing import NamedTuple
 import numpy as np
 from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
 
@@ -182,6 +179,6 @@ def edit():
     print(res)
     
     return render_template("edit.html", pago=pago, email=email, nombre=nombre, editar=editar)
-    
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
