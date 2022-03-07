@@ -20,6 +20,7 @@ El lenguaje utilizado para el algoritmo fue python, en la cual se utiliza la lib
 - **Prueba Unitaria** pytest
 - **Profiling** ProfilerMiddleware
 - **Requests** Postman
+- **Load Testing** Jmeter
 
 ### Cómo ejecutar API
 1. Encontrar el file 'app.py' para poder correr el api.
