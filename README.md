@@ -68,3 +68,4 @@ pytest
 - clases NamedTuple: https://realpython.com/python-namedtuple/
 - flask: https://www.fullstackpython.com/flask.html
 - numpy arrays: https://www.w3schools.com/python/numpy/numpy_creating_arrays.asp
+- presentación proyecto: https://view.genial.ly/622589a942b168001891a4ef/presentation-movie-ticket-reservation 
