@@ -44,7 +44,7 @@ def read_movie(chosen_movie):
     global movie
     if request.method == "POST":
         global time
-        time = request.form["gethorario"]
+        time = request.form.get("gethorario")
         texto = "la hora escogida fue: "
         texto2 = "esta es la disponibilidad de la sala: "
         if time in sala1:
@@ -121,9 +121,9 @@ def reservationinfo():
     global email
 
     if request.method == "POST":
-        nombre = request.form["getnombre"]
-        email = request.form["getemail"]
-        pago = request.form["getpago"]
+        nombre = request.form.get("getnombre")
+        email = request.form.get("getemail")
+        pago = request.form.get("getpago")
         print(pago)
         print(nombre)
         print(email)
@@ -145,7 +145,7 @@ def reservation():
     print(res)
 
     if request.method == "POST":
-        dato = request.form['edita']
+        dato = request.form.get('edita')
         print(dato)
 
         if dato == 'nombre':
