@@ -11,9 +11,10 @@ El algoritmo fue diseñado para que el usuario pudiera:
 
 El lenguaje utilizado para el algoritmo fue python, en la cual se utiliza la librería de numpy para poder trabajar con arrays tanto unidimensionales como multidimensionales. Así mismo se implementan las clases con NamedTuple, representando los structs para la información de la reservación. También se levantó el API por medio de flask y jinja2 para poder trabajar con html.
 
-**Arrays Unidimensionales**: salas según las horas, asientos seleccionados por el cliente
-**Arrays Multidimensionales**: mapa de asientos, mapa de selección de asientos, horas según cada película
-**Structs**: clase en la que se tienen los datos de la reservación confirmada
+**Arrays Unidimensionales**: salas según las horas, asientos seleccionados por el cliente.
+**Arrays Multidimensionales**: mapa de asientos, mapa de selección de asientos, horas según cada película.
+
+**Structs**: clase en la que se tienen los datos de la reservación confirmada.
 
 - **Prueba Unitaria** pytest
 - **Profiling** ProfilerMiddleware
