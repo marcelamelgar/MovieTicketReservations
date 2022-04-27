@@ -1,8 +1,11 @@
+from re import S
 from flask import Flask, render_template, request
 from jinja2 import FileSystemLoader, Environment
 from typing import NamedTuple
 import numpy as np
 from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
+from queue_stack import Queue, Stack, shuffle_to_queue, Stack
+import random
 
 domain = "0.0.0.0:5000/"
 number = 0
@@ -37,7 +40,37 @@ class ResponseReservation(NamedTuple):
 
 @app.route("/", methods=["GET", "POST"])
 def cartelera():
-    return render_template("cartelera.html")
+    fins = []
+    futureMovies = ["Franco Escamilla: Payaso - 28 de Abril", "Dr. Strange en el multiverso de locura - 4 de Mayo", 
+                    "Thor: Love and Thunder - 8 de Julio", "Avatar 2 - 16 de Diciembre"]   
+
+    ran = shuffle_to_queue(futureMovies)
+
+    q = Queue()
+    for i in range(len(ran)):
+        q.add_element(ran[i])
+    q.display()
+
+    for i in q.queue:
+        fin = i
+        fins.append(fin)
+
+    return render_template("cartelera.html", fins=fins)
+
+@app.route("/menu", methods=["GET", "POST"])
+def menu():
+    comida = ["Franco Escamilla: Payaso - 28 de Abril", "Dr. Strange en el Multiverso de Locura - 4 de Mayo", 
+                    "Thor: Love and Thunder - 8 de Julio", "Avatar 2 - 16 de Diciembre"]   
+
+    ran = shuffle_to_queue(comida)
+    print(ran)
+
+    s = Stack()
+    for i in range(len(ran)):
+        s.push_element(ran[i])
+    s.display()
+
+    return render_template("cartelera.html", s=s)
 
 @app.route("/hora/<chosen_movie>", methods=["GET","POST"])
 def read_movie(chosen_movie):
