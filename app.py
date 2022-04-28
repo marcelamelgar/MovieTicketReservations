@@ -159,9 +159,6 @@ def reservationinfo():
         nombre = request.form.get("getnombre")
         email = request.form.get("getemail")
         pago = request.form.get("getpago")
-        print(pago)
-        print(nombre)
-        print(email)
 
     return render_template("reservationInfo.html", movie=movie, time=time, entradas=entradas, chequeados=chequeados, nombre=nombre, pago=pago, email=email)
 
@@ -189,15 +186,11 @@ def reservation():
             fixed_num = assign_number
             num_orden.append(fixed_num)
             s += 1
-    print(fixed_num)
-
 
     res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago, order=fixed_num)
-    print(res)
 
     if request.method == "POST":
         dato = request.form.get('edita')
-        print(dato)
 
         if dato == 'nombre':
             editar = 'nombre'
@@ -217,7 +210,6 @@ def edit():
 
     if request.method == "POST":
         cambio = request.form.get("getnombres")
-        print(cambio)
 
         if editar == 'nombre':
             nombre = cambio
@@ -227,7 +219,6 @@ def edit():
             email = cambio
 
     res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago)
-    print(res)
     
     return render_template("edit.html", pago=pago, email=email, nombre=nombre, editar=editar)
 
