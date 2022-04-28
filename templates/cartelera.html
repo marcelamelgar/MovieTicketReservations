@@ -10,25 +10,27 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
-.slide-left {
-  width:100%;
-  overflow:hidden;
-}
-.slide-left h4 {
-  animation: slide-left 10s;
-  animation-iteration-count: infinite;
+.typewriter h4 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid aqua; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
 }
 
-@keyframes slide-left {
-  from {
-    margin-left: 100%;
-    width: 300%; 
-  }
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
 
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: aqua; }
 }
 </style>
 </head>
@@ -74,10 +76,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-row-padding">
     <div class="w3-rest w3-container">
       <div class="w3-container w3-dark-grey">
-        <div class="slide-left">
+        <div class="typewriter">
+          <ol>
           {% for i in fins %}
-          <h4 style="display: inline;">{{i}}&emsp;</h4>
+          <li><h4 style="display: inline-flex;">{{i}}</h4></li>
           {% endfor %}
+          </ol>
         </div>
       </div>
       <br><br>

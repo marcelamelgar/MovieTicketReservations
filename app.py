@@ -41,7 +41,7 @@ class ResponseReservation(NamedTuple):
 @app.route("/", methods=["GET", "POST"])
 def cartelera():
     fins = []
-    futureMovies = ["Franco Escamilla: Payaso - 28 de Abril", "Dr. Strange en el multiverso de locura - 4 de Mayo", 
+    futureMovies = ["Franco Escamilla: Payaso - 28 de Abril", "Dr. Strange en el Multiverso de Locura - 4 de Mayo", 
                     "Thor: Love and Thunder - 8 de Julio", "Avatar 2 - 16 de Diciembre"]   
 
     ran = shuffle_to_queue(futureMovies)
