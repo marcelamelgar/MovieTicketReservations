@@ -27,6 +27,7 @@ pago = ''
 nombre = ''
 email = ''
 editar = ''
+num_orden = [4234,9784,2349,6378,1093,2450,8765,7384,3673]
 
 class ResponseReservation(NamedTuple):
   name: str
@@ -37,6 +38,7 @@ class ResponseReservation(NamedTuple):
   asientos: list
   total: int
   pag: str
+  order: int
 
 @app.route("/", methods=["GET", "POST"])
 def cartelera():
@@ -173,8 +175,24 @@ def reservation():
     global pago
     global email
     global editar
+    global num_orden
 
-    res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago)
+    s= 0
+
+    while s == 0:
+        assign_number = random.randint(1000,9999)
+        exist_count = num_orden.count(assign_number)
+
+        if exist_count > 0:
+            s = 0
+        elif exist_count == 0:
+            fixed_num = assign_number
+            num_orden.append(fixed_num)
+            s += 1
+    print(fixed_num)
+
+
+    res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago, order=fixed_num)
     print(res)
 
     if request.method == "POST":
@@ -188,7 +206,7 @@ def reservation():
         elif dato == 'pago':
             editar = 'pago'
 
-    return render_template("reservation.html", nombre=nombre, movie=movie, time=time, entradas=entradas, chequeados=chequeados, pago=pago, email=email, total=entradas*65, editar=editar)
+    return render_template("reservation.html", nombre=nombre, movie=movie, time=time, entradas=entradas, chequeados=chequeados, pago=pago, email=email, total=entradas*65, editar=editar, order=fixed_num)
 
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
