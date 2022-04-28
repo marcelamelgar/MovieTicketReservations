@@ -70,7 +70,7 @@ def menu():
         s.push_element(ran[i])
     s.display()
 
-    return render_template("cartelera.html", s=s)
+    return render_template("menu.html", s=s)
 
 @app.route("/hora/<chosen_movie>", methods=["GET","POST"])
 def read_movie(chosen_movie):
