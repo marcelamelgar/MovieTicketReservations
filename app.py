@@ -30,6 +30,7 @@ nombre = ''
 email = ''
 editar = ''
 num_orden = [4234,9784,2349,6378,1093,2450,8765,7384,3673]
+tree = BinarySearchTree()
 
 class ResponseReservation(NamedTuple):
   name: str
@@ -277,19 +278,20 @@ def edit():
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     global num_orden
+    global tree
     file = open('reservations_done.json')
     registro = json.load(file)
     file.close()
 
-    tree = BinarySearchTree()
-
     for reser in num_orden:
         tree.insert(tree.root, reser)
+    print("TREE")    
     Node.visualization(tree.root)
 
     if request.method == "POST":
         buscado = int(request.form.get("getnumber"))
         tree.search(tree.root, buscado)
+        print("ORDEN BUSCADA")
         print(tree.search(tree.root, buscado))
 
         for ing in range(len(registro)):
@@ -304,6 +306,16 @@ def admin():
                 en_pago = registro[ing]["pago"]
         return render_template("admin.html", buscado=buscado, en_nombre=en_nombre, en_correo=en_correo, en_pelicula=en_pelicula, en_hora=en_hora, en_entradas=en_entradas, en_asientos=en_asientos, en_total=en_total, en_pago=en_pago)
     return render_template("admin.html")
+
+@app.route("/delete/<buscado>", methods=["GET", "POST"])
+def delete_order(buscado):
+    global tree
+    global num_orden
+    if request.method == "POST":
+        tree.delete(tree.root, int(buscado))
+        print("ARBOL CON ORDEN ELIMINADA")
+        Node.visualization(tree.root)
+    return render_template("delete.html", buscado=buscado, num_orden=num_orden)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
