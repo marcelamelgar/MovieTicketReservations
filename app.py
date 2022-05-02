@@ -263,6 +263,7 @@ def admin():
 
     for reser in num_orden:
         tree.insert(tree.root, reser)
+    Node.visualization(tree.root)
 
     if request.method == "POST":
         buscado = int(request.form.get("getnumber"))
