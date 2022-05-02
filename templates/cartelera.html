@@ -17,7 +17,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
   animation: 
-    typing 3.5s steps(40, end),
+    typing 3.5s steps(20, end),
     blink-caret .75s step-end infinite;
 }
 
@@ -78,11 +78,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <div class="w3-rest w3-container">
       <div class="w3-container w3-dark-grey">
         <div class="typewriter">
-          <ol>
-          {% for i in fins %}
-          <li><h4 style="display: inline-flex;">{{i}}</h4></li>
-          {% endfor %}
-          </ol>
+          <h4 id="anuncio"></h4>
         </div>
       </div>
       <br><br>
@@ -203,6 +199,27 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
+var peliculas = '{{fins|tojson}}';
+var peliculasList = JSON.parse(peliculas)
+
+function changeText() {
+
+var timer = 0;
+
+// Use let instead of var
+for (let i = 0; i < peliculasList.length; i++) {
+
+  setTimeout(() => { 
+    document.getElementById('anuncio').innerHTML = peliculasList[i]; 
+  }, timer);
+
+  timer = timer + 4000;
+}
+
+}
+
+changeText();
+
 </script>
 
 </body>
