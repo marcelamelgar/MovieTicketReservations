@@ -250,5 +250,9 @@ def edit():
     
     return render_template("edit.html", pago=pago, email=email, nombre=nombre, editar=editar)
 
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    return render_template("admin.html")
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
