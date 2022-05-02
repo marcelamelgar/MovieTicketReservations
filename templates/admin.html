@@ -10,6 +10,21 @@
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+.card {
+  padding: 10px;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #fafafa;
+  box-shadow: 0 0 8px 0px rgb(170 167 167);
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 25px;
+  color: black
+}
 </style>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -49,6 +64,38 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   </header>
 
   <body>
+    <div class="card">
+        <br>
+        <form method="POST">
+        <div class="form-group">
+            <img src="/static/movieticketss.jpeg" alt="movie">
+            <h5>Ingrese Numero de Orden:</h5>
+            <input type="number" class="form-control" id="inputnumber" name="getnumber" aria-describedby="nameHelp" placeholder="Orden...">
+        </div>
+        <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="search" name="horaelegida">Search!</button></p></center><br>
+        </form>
+    </div>
+
+
+    <div class="card">
+        <div class="w3-container w3-white">
+          <h3><em class="fa fa-asterisk fa-fw w3-margin-right" style="color:teal"></em>{{buscado}}</h3>
+          <h3><em class="fa fa-user fa-fw w3-margin-right" style="color:teal"></em>{{en_nombre}}</h3>
+          <h3><em class="fa fa-envelope-o fa-fw w3-margin-right" style="color:teal"></em>{{en_correo}}</h3>
+          <h3><em class="fa fa-film fa-fw w3-margin-right" style="color:teal"></em>{{en_pelicula}}</h3>
+          <h3><em class="fa fa-clock-o fa-fw w3-margin-right" style="color:teal"></em>{{en_hora}}</h3>
+          <h3><em class="fa fa-ticket fa-fw w3-margin-right" style="color:teal"></em>{{en_entradas}}</h3>
+          <h3><em class="fa fa-braille fa-fw w3-margin-right" style="color:teal"></em>{% for s in en_asientos %}
+            <ul>- {{s}}</ul>
+            {% endfor %}</h3>
+          <h3><em class="fa fa-usd fa-fw w3-margin-right" style="color:teal"></em>{{en_total}}</h3>
+          <h3><em class="fa fa-credit-card-alt fa-fw w3-margin-right" style="color:teal"></em><em class="fa fa-money fa-fw w3-margin-right" style="color:teal"></em>{{en_pago}}</h3>
+          <!-- <center>
+          <button class="w3-button w3-black w3-border w3-hover-teal" id="confirm" name="confirm" onclick="doneReservation()">Confirm!</button>
+          <a type="button" class="w3-button w3-black w3-border w3-hover-teal" id="edit" href="#editar">edit!</a>
+          </center><br> -->
+        </div>
+      </div>
   </body>
   
   

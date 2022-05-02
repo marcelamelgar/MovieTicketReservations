@@ -5,7 +5,9 @@ from typing import NamedTuple
 import numpy as np
 from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
 from queue_stack import Queue, Stack, shuffle, Stack
+from tree import Node, BinarySearchTree
 import random
+import json
 
 domain = "0.0.0.0:5000/"
 number = 0
@@ -252,6 +254,32 @@ def edit():
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
+    global num_orden
+    file = open('reservations_done.json')
+    registro = json.load(file)
+    file.close()
+
+    tree = BinarySearchTree()
+
+    for reser in num_orden:
+        tree.insert(tree.root, reser)
+
+    if request.method == "POST":
+        buscado = int(request.form.get("getnumber"))
+        tree.search(tree.root, buscado)
+        print(tree.search(tree.root, buscado))
+
+        for ing in range(len(registro)):
+            if (buscado == registro[ing]["numero"]):
+                en_nombre = registro[ing]["nombre"]
+                en_correo = registro[ing]["correo"]
+                en_pelicula = registro[ing]["pelicula"]
+                en_hora = registro[ing]["hora"]
+                en_entradas = registro[ing]["entradas"]
+                en_asientos = registro[ing]["asientos"]
+                en_total = registro[ing]["total"]
+                en_pago = registro[ing]["pago"]
+        return render_template("admin.html", buscado=buscado, en_nombre=en_nombre, en_correo=en_correo, en_pelicula=en_pelicula, en_hora=en_hora, en_entradas=en_entradas, en_asientos=en_asientos, en_total=en_total, en_pago=en_pago)
     return render_template("admin.html")
 
 if __name__ == "__main__":
