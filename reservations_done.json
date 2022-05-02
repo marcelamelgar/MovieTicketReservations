@@ -3,7 +3,7 @@
         "numero": 4234,
         "nombre": "Jose Reyes",
         "correo": "josereyes@ufm.edu",
-        "pelicula": "Cásate Conmigo",
+        "pelicula": "C\u00e1sate Conmigo",
         "hora": "11:20",
         "entradas": 2,
         "asientos": [
@@ -17,7 +17,7 @@
         "numero": 9784,
         "nombre": "Esteban Samayoa",
         "correo": "estebansamayoa@ufm.edu",
-        "pelicula": "Cacería de Brujas",
+        "pelicula": "Cacer\u00eda de Brujas",
         "hora": "10:15",
         "entradas": 4,
         "asientos": [
@@ -33,7 +33,7 @@
         "numero": 2349,
         "nombre": "Nickolas Nollte",
         "correo": "nickolasnolte@ufm.edu",
-        "pelicula": "Corazón de Fuego",
+        "pelicula": "Coraz\u00f3n de Fuego",
         "hora": "14:00",
         "entradas": 2,
         "asientos": [
@@ -47,7 +47,7 @@
         "numero": 6378,
         "nombre": "Rodrigo Reyes",
         "correo": "rodrigoreyes@ufm.edu",
-        "pelicula": "El Padrino 50 Años",
+        "pelicula": "El Padrino 50 A\u00f1os",
         "hora": "16:00",
         "entradas": 3,
         "asientos": [
@@ -75,7 +75,7 @@
         "numero": 2450,
         "nombre": "Juan Fernadez",
         "correo": "juanfernandez@ufm.edu",
-        "pelicula": "Sing 2: ¡Ven y Canta de Nuevo!",
+        "pelicula": "Sing 2: \u00a1Ven y Canta de Nuevo!",
         "hora": "16:20",
         "entradas": 5,
         "asientos": [
@@ -92,7 +92,7 @@
         "numero": 8765,
         "nombre": "Marcelo Garcia",
         "correo": "marcelogarcia@ufm.edu",
-        "pelicula": "Cásate Conmigo",
+        "pelicula": "C\u00e1sate Conmigo",
         "hora": "14:05",
         "entradas": 2,
         "asientos": [
@@ -122,7 +122,7 @@
         "numero": 3673,
         "nombre": "Carlos Morales",
         "correo": "carlosmorales@ufm.edu",
-        "pelicula": "El Padrino 50 Años",
+        "pelicula": "El Padrino 50 A\u00f1os",
         "hora": "20:30",
         "entradas": 2,
         "asientos": [
@@ -130,6 +130,19 @@
             "F4"
         ],
         "total": 130,
+        "pago": "efectivo"
+    },
+    {
+        "numero": 4078,
+        "nombre": "Isabel",
+        "correo": "isabel@ufm.edu",
+        "pelicula": "Cacer\u00eda de Brujas",
+        "hora": "13:05",
+        "entradas": 1,
+        "asientos": [
+            "F3"
+        ],
+        "total": 65,
         "pago": "efectivo"
     }
 ]

@@ -218,6 +218,28 @@ def reservation():
             s += 1
 
     res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago, order=fixed_num)
+    
+    as_list = chequeados.tolist()
+    list_ob = []
+
+    with open("reservations_done.json") as pf:
+        list_ob = json.load(pf)
+
+    list_ob.append({
+        "numero": fixed_num,
+        "nombre": nombre,
+        "correo": email,
+        "pelicula": movie,
+        "hora": time,
+        "entradas": entradas,
+        "asientos": as_list,
+        "total": entradas*65,
+        "pago": pago
+    })
+
+    
+    with open("reservations_done.json", "w") as json_file:
+        json.dump(list_ob, json_file, indent=4, separators=(',',': '))
 
     if request.method == "POST":
         dato = request.form.get('edita')
