@@ -10,7 +10,7 @@ class Queue:
     def display(self):
         print(self.queue)
 
-def shuffle_to_queue(array):
+def shuffle(array):
     random.shuffle(array)
     return array
 

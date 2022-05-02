@@ -4,7 +4,7 @@ from jinja2 import FileSystemLoader, Environment
 from typing import NamedTuple
 import numpy as np
 from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
-from queue_stack import Queue, Stack, shuffle_to_queue, Stack
+from queue_stack import Queue, Stack, shuffle, Stack
 import random
 
 domain = "0.0.0.0:5000/"
@@ -46,11 +46,14 @@ def cartelera():
     futureMovies = ["Franco Escamilla: Payaso - 28 de Abril", "Dr. Strange en el Multiverso de Locura - 4 de Mayo", 
                     "Thor: Love and Thunder - 8 de Julio", "Avatar 2 - 16 de Diciembre"]   
 
-    ran = shuffle_to_queue(futureMovies)
+    ran = shuffle(futureMovies)
+    print("ASI ESTRAN AL QUEUE:")
+    print(ran)
 
     q = Queue()
     for i in range(len(ran)):
         q.add_element(ran[i])
+    print("ASI SALEN DEL QUEUE:")
     q.display()
 
     for i in q.queue:
@@ -61,18 +64,43 @@ def cartelera():
 
 @app.route("/menu", methods=["GET", "POST"])
 def menu():
-    comida = ["Franco Escamilla: Payaso - 28 de Abril", "Dr. Strange en el Multiverso de Locura - 4 de Mayo", 
-                    "Thor: Love and Thunder - 8 de Julio", "Avatar 2 - 16 de Diciembre"]   
+    fins_stack_food = []
+    fins_stack_combos = []
+    comida = ["/static/poporopo.png", "/static/soda.png", 
+                    "/static/nachos.png", "/static/hotdog.png", 
+                    "/static/fries.png", "/static/dulces.png"] 
 
-    ran = shuffle_to_queue(comida)
-    print(ran)
+    combos = ["/static/cp1.png", "/static/cp2.png", "/static/cp3.png",
+                    "/static/cp4.png", "/static/cp5.png", "/static/cp6.png", "/static/cp7.png"]  
 
-    s = Stack()
-    for i in range(len(ran)):
-        s.push_element(ran[i])
-    s.display()
+    ran_comida = shuffle(comida)
+    ran_combos = shuffle(combos)
+    print("ASI ESTRAN AL STACK:")
+    print(ran_comida)
+    print("ASI ESTRAN AL STACK:")
+    print(ran_combos)
 
-    return render_template("menu.html", s=s)
+    s_food = Stack()
+    for i in range(len(ran_comida)):
+        s_food.push_element(ran_comida[i])
+    print("ASI SALEN DEL STACK")    
+    s_food.display()
+
+    for i in s_food.stack:
+        fin_stack = i
+        fins_stack_food.append(fin_stack)
+
+    s_combos = Stack()
+    for i in range(len(ran_combos)):
+        s_combos.push_element(ran_combos[i])
+    print("ASI SALEN DEL STACK")
+    s_combos.display()
+
+    for i in s_combos.stack:
+        fin_stack_combo = i
+        fins_stack_combos.append(fin_stack_combo)
+
+    return render_template("menu.html", fins_stack_food=fins_stack_food, fins_stack_combos=fins_stack_combos)
 
 @app.route("/hora/<chosen_movie>", methods=["GET","POST"])
 def read_movie(chosen_movie):
