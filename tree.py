@@ -82,24 +82,6 @@ class BinarySearchTree:
       return self.search(root.right_child, key)
 
 
-  def find_min(self, root):
-    current_node = root
-
-    while current_node.left_child is not None:
-      current_node = current_node.left_child
-
-    return current_node
-
-
-  def find_max(self, root):
-    current_node = root
-
-    while current_node.right_child is not None:
-      current_node = current_node.right_child
-
-    return current_node
-
-
   def delete(self, root, key):
     if root == None:
       return root
