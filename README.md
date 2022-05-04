@@ -80,6 +80,7 @@ pytest
 - flask: https://www.fullstackpython.com/flask.html
 - numpy arrays: https://www.w3schools.com/python/numpy/numpy_creating_arrays.asp
 - presentación proyecto parte 1: https://view.genial.ly/622589a942b168001891a4ef/presentation-movie-ticket-reservation 
-- Queue: https://www.programiz.com/dsa/queue
-- Stack: https://www.programiz.com/dsa/stack
-- Tree: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+- queue: https://www.programiz.com/dsa/queue
+- stack: https://www.programiz.com/dsa/stack
+- tree: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+- presentación proyecto parte 2: https://view.genial.ly/6272a36e91e2ef0011ffe304/presentation-segunda-entrega-estructuras
