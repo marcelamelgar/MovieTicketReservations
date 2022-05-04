@@ -1,5 +1,5 @@
 # Movie Ticket Reservations
-Algoritmo en la cual se simula cómo es que funciona la reservación de entradas para el cine. Fue desarrollado para el usuario del punto de vista de cliente.
+Algoritmo en la cual se simula cómo es que funciona la reservación de entradas para el cine. Fue desarrollado para el usuario del punto de vista de cliente. Como segunda parte del proyecto, se agregó que a cada reservación que se lleve a cabo, se le asigne un número de orden para que después alguien de la administración pueda buscar la orden y hasta cancelarla. También se le agregó el feature en que el cliente puede ir viendo cuáles son las próximas películas que se podrán ver en el cine. Incluso, se le añadió una sección de dulcería en dónde el puede ver el menú de comida y los combos de comida que hay.
 
 El algoritmo fue diseñado para que el usuario pudiera:
 - Ver las peliculas que se encuentran en cartelera y su información 
@@ -8,14 +8,24 @@ El algoritmo fue diseñado para que el usuario pudiera:
 - Definir la cantidad de asientos que desee y su localidad en la sala
 - Realizar la reservación
 - Confirmar que la reservación sea correcta
+- Contar con un número de órden único
+- Poder ver cuáles son las películas que estarán proximamente en el cine
+- Ver el menú de comida del cine y los combos que ofrece
+- Cancelar su reservación por medio de la busqueda de un administrador del cine
 
-El lenguaje utilizado para el algoritmo fue python, en la cual se utiliza la librería de numpy para poder trabajar con arrays tanto unidimensionales como multidimensionales. Así mismo se implementan las clases con NamedTuple, representando los structs para la información de la reservación. También se levantó el API por medio de flask y jinja2 para poder trabajar con html.
+El lenguaje utilizado para el algoritmo fue python, en la cual se utiliza la librería de numpy para poder trabajar con arrays tanto unidimensionales como multidimensionales. Así mismo se implementan las clases con NamedTuple, representando los structs para la información de la reservación. También se levantó el API por medio de flask y jinja2 para poder trabajar con html. Cuenta con las estructuras de Queue, Stack y trees, generados con clases y objetos.
 
 **Arrays Unidimensionales**: salas según las horas, asientos seleccionados por el cliente.
 
 **Arrays Multidimensionales**: mapa de asientos, mapa de selección de asientos, horas según cada película.
 
 **Structs**: clase en la que se tienen los datos de la reservación confirmada.
+
+**Queue**: lista en la que se presentan las próximas películas que se presentan en órden
+
+**Stack**: listas en las que se presentan las diferentes opciones de snacks y combos que ofrece el cine
+
+**Tree**: Binary Search Tree en la que el administrador puede buscar un número único de orden y puede borrar/cancelar la orden.
 
 - **Prueba Unitaria** pytest
 - **Profiling** ProfilerMiddleware
@@ -69,4 +79,7 @@ pytest
 - clases NamedTuple: https://realpython.com/python-namedtuple/
 - flask: https://www.fullstackpython.com/flask.html
 - numpy arrays: https://www.w3schools.com/python/numpy/numpy_creating_arrays.asp
-- presentación proyecto: https://view.genial.ly/622589a942b168001891a4ef/presentation-movie-ticket-reservation 
+- presentación proyecto parte 1: https://view.genial.ly/622589a942b168001891a4ef/presentation-movie-ticket-reservation 
+- Queue: https://www.programiz.com/dsa/queue
+- Stack: https://www.programiz.com/dsa/stack
+- Tree: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
