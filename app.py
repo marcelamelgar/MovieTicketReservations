@@ -47,7 +47,8 @@ class ResponseReservation(NamedTuple):
 def cartelera():
     fins = []
     futureMovies = ["Franco Escamilla: Payaso - 28 de Abril", "Dr. Strange en el Multiverso de Locura - 4 de Mayo", 
-                    "Thor: Love and Thunder - 8 de Julio", "Avatar 2 - 16 de Diciembre"]   
+                    "Thor: Love and Thunder - 8 de Julio", "Avatar 2 - 16 de Diciembre", "Lightyear - 17 de Junio", 
+                    "Black Panther: Wakanda Forever - 11 de Noviembre", "Halloween Ends - 14 de Octubre"]   
 
     ran = shuffle(futureMovies)
     print("ASI ESTRAN AL QUEUE:")
