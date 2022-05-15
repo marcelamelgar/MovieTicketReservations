@@ -7,7 +7,7 @@ from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
 from queue_stack import Queue, Stack, shuffle, Stack
 from tree import Node, BinarySearchTree
 from Graph import generate_edges, addEdge
-from sort import mergeSort, get_ordered_List
+from sort import mergeSort
 from jump_search import jumpSearch
 from collections import defaultdict
 import random
@@ -348,17 +348,21 @@ def admin():
 
     num_orden = mergeSort(num_orden)
     print(num_orden)
-    # largo = len(num_orden)
-    # for reser in num_orden:
-    #     tree.insert(tree.root, reser)
-    # print("TREE")    
-    # Node.visualization(tree.root)
+    largo = len(num_orden)
+    for reser in num_orden:
+        tree.insert(tree.root, reser)
+    print("TREE")    
+    Node.visualization(tree.root)
 
     if request.method == "POST":
         buscado = int(request.form.get("getnumber"))
         index = jumpSearch(num_orden, buscado, largo)
-        print("ORDEN BUSCADA")
-        print("Number" , buscado, "is at index" ,"%.0f"%index)
+        if index == -1:
+            feedback = "Orden no se encuentra en el sistema!"
+        else:
+            print("ORDEN BUSCADA")
+            print("Orden" , buscado, "en el espacio" ,"%.0f"%index)
+            feedback = "Orden encontrada!"
         # tree.search(tree.root, buscado)
         # print("ORDEN BUSCADA")
         # print(tree.search(tree.root, buscado))
@@ -373,7 +377,7 @@ def admin():
                 en_asientos = registro[ing]["asientos"]
                 en_total = registro[ing]["total"]
                 en_pago = registro[ing]["pago"]
-        return render_template("admin.html", buscado=buscado, en_nombre=en_nombre, en_correo=en_correo, en_pelicula=en_pelicula, en_hora=en_hora, en_entradas=en_entradas, en_asientos=en_asientos, en_total=en_total, en_pago=en_pago)
+        return render_template("admin.html", buscado=buscado, en_nombre=en_nombre, en_correo=en_correo, en_pelicula=en_pelicula, en_hora=en_hora, en_entradas=en_entradas, en_asientos=en_asientos, en_total=en_total, en_pago=en_pago, feedback=feedback)
     return render_template("admin.html")
 
 @app.route("/delete/<buscado>", methods=["GET", "POST"])

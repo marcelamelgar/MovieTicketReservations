@@ -39,9 +39,4 @@ def mergeSort(arr):
             arr[k] = R[j]
             j += 1
             k += 1
-
-def get_ordered_List(arr):
-    for i in range(len(arr)):
-        arr2 = []
-        arr2.append(i)
-    return arr2
+    return arr
