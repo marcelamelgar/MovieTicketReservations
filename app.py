@@ -1,4 +1,3 @@
-from re import S
 from flask import Flask, render_template, request
 from jinja2 import FileSystemLoader, Environment
 from typing import NamedTuple
@@ -10,6 +9,7 @@ from Graph import generate_edges, addEdge
 from sort import mergeSort
 from jump_search import jumpSearch
 from collections import defaultdict
+from graphviz import GraphVisualization
 import random
 import json
 
@@ -43,44 +43,60 @@ horas_banishing = ['18:35','20:45','22:15','23:55']
 horas_sing = ['16:20','17:30','21:15']
 tree = BinarySearchTree()
 graph = defaultdict(list)
+G = GraphVisualization()
 
 def directed_loop_graph(i):
     for j in sala1:
         if i == j:
             addEdge(graph,i,'sala1')
             addEdge(graph,'sala1',i)
+            G.addEdge2('sala1', i)
+            G.addEdge2(i, 'sala1')
     for h in sala2:
         if i == h:
             addEdge(graph,i,'sala2')
             addEdge(graph,'sala2',i)
+            G.addEdge2('sala2', i)
+            G.addEdge2(i, 'sala2')
     for o in sala3:
         if i == o:
             addEdge(graph,i,'sala3')
             addEdge(graph,'sala3',i)
+            G.addEdge2('sala3', i)
+            G.addEdge2(i, 'sala3')
     for p in sala4:
         if i == p:
             addEdge(graph,i,'sala4')
             addEdge(graph,'sala4',i)
+            G.addEdge2('sala4', i)
+            G.addEdge2(i, 'sala4')
 
 for i in horas_brujas:
     addEdge(graph,'Cacería de Brujas',i)
+    G.addEdge2('Cacería de Brujas', i)
     directed_loop_graph(i)
 for i in horas_casate:
     addEdge(graph,'Cásate Conmigo',i)
+    G.addEdge2('Cásate Conmigo', i)
     directed_loop_graph(i)
 for i in horas_corazon:
     addEdge(graph,'Corazón de Fuego',i)
+    G.addEdge2('Corazón de Fuego', i)
     directed_loop_graph(i)
 for i in horas_padrino:
     addEdge(graph,'El Padrino 50 años',i)
+    G.addEdge2('El Padrino 50 años', i)
     directed_loop_graph(i)
 for i in horas_banishing:
     addEdge(graph,'El Exorcismo',i)
+    G.addEdge2('El Exorcismo', i)
     directed_loop_graph(i)
-for i in horas_banishing:
+for i in horas_sing:
     addEdge(graph,'Sing 2: ¡Ven y Canta de Nuevo!',i)
+    G.addEdge2('Sing 2: ¡Ven y Canta de Nuevo!', i)
     directed_loop_graph(i)
 
+# G.visualize()
 
 class ResponseReservation(NamedTuple):
   name: str
@@ -181,6 +197,7 @@ def read_movie(chosen_movie):
 
     horas = []
     print(generate_edges(graph))
+    # G.visualize()
     if chosen_movie == 'brujas':
         movie = 'Cacería de Brujas'
         horas = graph['Cacería de Brujas']
