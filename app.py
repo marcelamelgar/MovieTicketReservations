@@ -6,6 +6,10 @@ import numpy as np
 from info import Cine1, Cine2, Cine3, Cine4, Cine1P, Cine2P, Cine3P, Cine4P
 from queue_stack import Queue, Stack, shuffle, Stack
 from tree import Node, BinarySearchTree
+from Graph import generate_edges, addEdge
+from sort import mergeSort, get_ordered_List
+from jump_search import jumpSearch
+from collections import defaultdict
 import random
 import json
 
@@ -29,8 +33,54 @@ pago = ''
 nombre = ''
 email = ''
 editar = ''
+fixed_num = int
 num_orden = [4234,9784,2349,6378,1093,2450,8765,7384,3673]
+horas_brujas = ['10:15','13:05','15:45','16:22','18:30']
+horas_casate = ['11:20','14:05','17:45']
+horas_corazon = ['14:00','19:00']
+horas_padrino = ['16:00','20:30','21:05']
+horas_banishing = ['18:35','20:45','22:15','23:55']
+horas_sing = ['16:20','17:30','21:15']
 tree = BinarySearchTree()
+graph = defaultdict(list)
+
+def directed_loop_graph(i):
+    for j in sala1:
+        if i == j:
+            addEdge(graph,i,'sala1')
+            addEdge(graph,'sala1',i)
+    for h in sala2:
+        if i == h:
+            addEdge(graph,i,'sala2')
+            addEdge(graph,'sala2',i)
+    for o in sala3:
+        if i == o:
+            addEdge(graph,i,'sala3')
+            addEdge(graph,'sala3',i)
+    for p in sala4:
+        if i == p:
+            addEdge(graph,i,'sala4')
+            addEdge(graph,'sala4',i)
+
+for i in horas_brujas:
+    addEdge(graph,'Cacería de Brujas',i)
+    directed_loop_graph(i)
+for i in horas_casate:
+    addEdge(graph,'Cásate Conmigo',i)
+    directed_loop_graph(i)
+for i in horas_corazon:
+    addEdge(graph,'Corazón de Fuego',i)
+    directed_loop_graph(i)
+for i in horas_padrino:
+    addEdge(graph,'El Padrino 50 años',i)
+    directed_loop_graph(i)
+for i in horas_banishing:
+    addEdge(graph,'El Exorcismo',i)
+    directed_loop_graph(i)
+for i in horas_banishing:
+    addEdge(graph,'Sing 2: ¡Ven y Canta de Nuevo!',i)
+    directed_loop_graph(i)
+
 
 class ResponseReservation(NamedTuple):
   name: str
@@ -114,49 +164,58 @@ def read_movie(chosen_movie):
         time = request.form.get("gethorario")
         texto = "la hora escogida fue: "
         texto2 = "esta es la disponibilidad de la sala: "
-        if time in sala1:
-            cine1 = Cine1()
-        elif time in sala2:
-            cine1 = Cine2()
-        elif time in sala3:
-            cine1 = Cine3()
-        elif time in sala4:
-            cine1 = Cine4() 
+        for funcion in graph['sala1']:
+            if funcion == time:
+                cine1 = Cine1()
+        for funcion in graph['sala2']:
+            if funcion == time:
+                cine1 = Cine2()
+        for funcion in graph['sala3']:
+            if funcion == time:
+                cine1 = Cine3()
+        for funcion in graph['sala4']:
+            if funcion == time:
+                cine1 = Cine4() 
         
         return render_template("hora.html", cine1=cine1, time=time, texto=texto, texto2=texto2)
 
     horas = []
+    print(generate_edges(graph))
     if chosen_movie == 'brujas':
         movie = 'Cacería de Brujas'
-        horas = [['10:15'],['13:05'],['15:45'],['16:22'],['18:30']]
+        horas = graph['Cacería de Brujas']
     elif chosen_movie == 'casate':
         movie = 'Cásate Conmigo'
-        horas = [['11:20'],['14:05'],['17:45']]
+        horas = graph['Cásate Conmigo']
     elif chosen_movie == 'corazon':
         movie = 'Corazón de Fuego'
-        horas = [['14:00'],['19:00']]
+        horas = graph['Corazón de Fuego']
     elif chosen_movie == 'padrino':
         movie = 'El Padrino 50 años'
-        horas = [['16:00'],['20:30'],['21:05']]
+        horas = graph['El Padrino 50 años']
     elif chosen_movie == 'banishing':
         movie = 'El Exorcismo'
-        horas = [['18:35'],['20:45'],['22:15'],['23:55']]
+        horas = graph['El Exorcismo']
     elif chosen_movie == 'sing':
         movie = 'Sing 2: ¡Ven y Canta de Nuevo!'
-        horas = [['16:20'],['17:30'],['21:15']]
+        horas = graph['Sing 2: ¡Ven y Canta de Nuevo!']
     horas =  np.array(horas)
     return render_template("hora.html", movie = movie, horas = horas, chosen_movie = chosen_movie)
 
 @app.route("/asiento/<time>", methods=["GET", "POST"])
 def get_asiento(time):
-    if time in sala1:
-        cine1 = Cine1P()
-    elif time in sala2:
-        cine1 = Cine2P()
-    elif time in sala3:
-        cine1 = Cine3P()
-    elif time in sala4:
-        cine1 = Cine4P()
+    for funcion in graph['sala1']:
+            if funcion == time:
+                cine1 = Cine1P()
+    for funcion in graph['sala2']:
+            if funcion == time:
+                cine1 = Cine2P()
+    for funcion in graph['sala3']:
+            if funcion == time:
+                cine1 = Cine3P()
+    for funcion in graph['sala4']:
+            if funcion == time:
+                cine1 = Cine4P()
         
     if request.method == "POST":
         global chequeados
@@ -205,6 +264,7 @@ def reservation():
     global email
     global editar
     global num_orden
+    global fixed_num
 
     s= 0
 
@@ -261,6 +321,7 @@ def edit():
     global email
     global editar
     global nombre
+    global fixed_num
 
     if request.method == "POST":
         cambio = request.form.get("getnombres")
@@ -272,28 +333,35 @@ def edit():
         if editar == 'email':
             email = cambio
 
-    res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago)
+    res = ResponseReservation(name=nombre, correo=email, pelicula=movie, hora=time, ents=entradas, asientos=chequeados, total = entradas*65, pag=pago, order=fixed_num)
     
     return render_template("edit.html", pago=pago, email=email, nombre=nombre, editar=editar)
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     global num_orden
+    print(num_orden)
     global tree
     file = open('reservations_done.json')
     registro = json.load(file)
     file.close()
 
-    for reser in num_orden:
-        tree.insert(tree.root, reser)
-    print("TREE")    
-    Node.visualization(tree.root)
+    num_orden = mergeSort(num_orden)
+    print(num_orden)
+    # largo = len(num_orden)
+    # for reser in num_orden:
+    #     tree.insert(tree.root, reser)
+    # print("TREE")    
+    # Node.visualization(tree.root)
 
     if request.method == "POST":
         buscado = int(request.form.get("getnumber"))
-        tree.search(tree.root, buscado)
+        index = jumpSearch(num_orden, buscado, largo)
         print("ORDEN BUSCADA")
-        print(tree.search(tree.root, buscado))
+        print("Number" , buscado, "is at index" ,"%.0f"%index)
+        # tree.search(tree.root, buscado)
+        # print("ORDEN BUSCADA")
+        # print(tree.search(tree.root, buscado))
 
         for ing in range(len(registro)):
             if (buscado == registro[ing]["numero"]):

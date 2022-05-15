@@ -60,10 +60,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             <br>
             <center>
                 {% for value in horas %}
-                {% for hora in value %}
-                <input type="radio" id="getho" name="gethorario" value={{hora}}>
-                <label for="html">{{hora}}</label><br>
-                {% endfor%}
+                <input type="radio" id="getho" name="gethorario" value={{value}}>
+                <label for="html">{{value}}</label><br>
                 {% endfor%}
             <br><br>
           </center>
