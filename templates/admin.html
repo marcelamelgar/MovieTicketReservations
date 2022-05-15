@@ -72,7 +72,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             <h5>Ingrese Numero de Orden:</h5>
             <input type="number" class="form-control" id="inputnumber" name="getnumber" aria-describedby="nameHelp" placeholder="Orden...">
         </div>
-        <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="search" name="horaelegida">Search!</button></p></center><br>
+        <center><p><button class="w3-button w3-black w3-border w3-hover-teal" id="search" name="horaelegida" onclick="feedback_given()">Search!</button></p></center><br>
+        <p>{{feedback}}</p>
         </form>
     </div>
 
@@ -106,6 +107,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 </div>
 
 <script>
+  var x = '{{feedback}}';
 // Script to open and close sidebar
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -115,6 +117,9 @@ function w3_open() {
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
+}
+function feedback_given(){
+  alert(x);
 }
 </script>
 
