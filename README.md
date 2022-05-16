@@ -1,5 +1,5 @@
 # Movie Ticket Reservations
-Algoritmo en la cual se simula cómo es que funciona la reservación de entradas para el cine. Fue desarrollado para el usuario del punto de vista de cliente. Como segunda parte del proyecto, se agregó que a cada reservación que se lleve a cabo, se le asigne un número de orden para que después alguien de la administración pueda buscar la orden y hasta cancelarla. También se le agregó el feature en que el cliente puede ir viendo cuáles son las próximas películas que se podrán ver en el cine. Incluso, se le añadió una sección de dulcería en dónde el puede ver el menú de comida y los combos de comida que hay.
+Algoritmo en la cual se simula cómo es que funciona la reservación de entradas para el cine. Fue desarrollado para el usuario del punto de vista de cliente. Como segunda parte del proyecto, se agregó que a cada reservación que se lleve a cabo, se le asigne un número de orden para que después alguien de la administración pueda buscar la orden y hasta cancelarla. También se le agregó el feature en que el cliente puede ir viendo cuáles son las próximas películas que se podrán ver en el cine. Incluso, se le añadió una sección de dulcería en dónde el puede ver el menú de comida y los combos de comida que hay..
 
 El algoritmo fue diseñado para que el usuario pudiera:
 - Ver las peliculas que se encuentran en cartelera y su información 
