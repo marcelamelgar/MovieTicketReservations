@@ -407,5 +407,18 @@ def delete_order(buscado):
         Node.visualization(tree.root)
     return render_template("delete.html", buscado=buscado, num_orden=num_orden)
 
+
+@app.route("/checkup", methods=["GET", "POST"])
+def checkup_element():
+
+    if request.method == "POST":
+        informa = request.form.get("getinfo")
+        print(informa)
+        respuesta = graph[informa]
+        print(respuesta)
+        return render_template("checkupelement.html", respuesta=respuesta)
+    
+    return render_template("checkupelement.html")
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port = 8000,debug=True)
