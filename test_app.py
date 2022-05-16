@@ -1,6 +1,10 @@
-from app import ResponseReservation,sala1, sala2, sala3, sala4
+from app import ResponseReservation,sala1, sala2, sala3, sala4,num_orden
 from queue_stack import shuffle, Stack, Queue
 from tree import BinarySearchTree, Node
+from sort import mergeSort
+from jump_search import jumpSearch
+from Graph import addEdge, generate_edges
+from collections import defaultdict
 
 def test_struct():
     nombre = 'Marcela'
@@ -79,3 +83,35 @@ def test_tree():
     tree.insert(tree.root, 1)
     assert tree.search(tree.root, 3)
     assert tree.delete(tree.root, 1)
+
+def test_sort():
+    try_array = [3,1,7,2,45,21,34]
+    try_array = mergeSort(try_array)
+    primero = try_array[0]
+    ultimo = try_array[-1]
+    medio = try_array[3]
+    assert primero == 1
+    assert ultimo == 45
+    assert medio == 7
+
+def test_jump_search():
+    try_array2 = mergeSort(num_orden)
+    largo = len(try_array2)
+    buscar1 = 1093
+    buscar2 = 8765
+    index = jumpSearch(try_array2, buscar1, largo)
+    index2 = jumpSearch(try_array2, buscar2, largo)
+    assert index == 0
+    assert index2 == 7
+
+def test_grafo():
+    graph = defaultdict(list)
+    addEdge(graph,'Punto A','Punto B')
+    addEdge(graph,'Punto B','Punto C')
+    addEdge(graph,'Punto B','Punto A')
+    generate_edges(graph)
+    resultado = graph['Punto A']
+    loop = graph['Punto B']
+    assert resultado[0] == 'Punto B'
+    assert loop[0] == 'Punto C'
+    assert loop[1] == 'Punto A'
