@@ -30,6 +30,7 @@ jobs:
           pip install numpy
           pip install pytest
           pip install networkx
+          pip install matplotlib
           
           
       # Run our unit tests
