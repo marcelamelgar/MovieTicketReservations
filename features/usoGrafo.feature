@@ -2,7 +2,7 @@
 # thirteenth feature
 Feature: Usar un grafo en mi código
 
-	Scenario: Puedo usar un grafo para la distribución de horarios y salas con las películas
+      Scenario: Puedo usar un grafo para la distribución de horarios y salas con las películas
       Given las películas
       And el array con los horarios de cada película
       And el array con los horarios asignados a cada sala
