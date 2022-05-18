@@ -31,6 +31,7 @@ jobs:
           pip install pytest
           pip install networkx
           pip install matplotlib
+          pytest
           
           
       # Run our unit tests
